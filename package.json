@@ -1,0 +1,25 @@
+{
+    "name": "bestellapp",
+    "version": "1.0.0",
+    "description": "",
+    "homepage": "https://github.com/Infamous2k9/bestellapp#readme",
+    "bugs": {
+        "url": "https://github.com/Infamous2k9/bestellapp/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Infamous2k9/bestellapp.git"
+    },
+    "author": "Andre",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "sass": "^1.97.2",
+        "vite": "^7.3.1"
+
+    }
+}
