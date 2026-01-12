@@ -1,0 +1,29 @@
+@use "../abstracts/" as *;
+.container {
+    @include make-container();
+}
+
+.container--fullsize {
+    @include make-container($fullsize: true);
+}
+
+.container {
+    @each $breakpoint,
+    $container-max-width in $container-max-widths {
+        @include breakpoint($breakpoint) {
+            max-width: $container-max-width;
+        }
+    }
+}
+
+@each $breakpoint,
+$container-max-width in $container-max-widths {
+    @include breakpoint($breakpoint) {
+        .container-#{$breakpoint} {
+            @include make-container($max-width: $container-max-width);
+        }
+        .container-#{$breakpoint}--fullsize {
+            @include make-container($fullsize: true);
+        }
+    }
+}

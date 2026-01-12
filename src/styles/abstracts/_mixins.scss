@@ -1,0 +1,29 @@
+@use "./functions" as *;
+@use "./variables" as *;
+@mixin flex( $flex-direction: row, $flex-wrap: wrap, $justify-content: flex-start, $align-items: stretch) {
+    display: flex;
+    flex-direction: $flex-direction;
+    flex-wrap: $flex-wrap;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+@mixin make-container($fullsize: false, $max-width: null) {
+    width: 100%;
+    @if $fullsize {
+        max-width: none;
+    }
+    @else {
+        @if $max-width !=null {
+            max-width: $max-width;
+        }
+        padding: 0 $container-padding;
+        margin: 0 auto;
+    }
+}
+
+@mixin breakpoint($breakpoint) {
+    @media screen and (min-width: get-min-width($breakpoint)) {
+        @content;
+    }
+}
