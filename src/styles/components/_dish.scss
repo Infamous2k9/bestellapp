@@ -1,0 +1,9 @@
+.dish {
+  &__image {
+    height: 350px;
+    aspect-ratio: 1/1;
+  }
+  &__price {
+    font-size: 32px;
+  }
+}
