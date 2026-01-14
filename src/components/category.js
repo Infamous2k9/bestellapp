@@ -1,5 +1,9 @@
 import { Dish as DishModel } from "../models/dish.model"
 import { dishes } from "@data/database"
+import { getCategoryHTML } from "../templates/category"
+import { getDishHTML } from "../templates/dish"
+import { addEventTrigger } from "./dish"
+
 
 export const categories = {
     vars: {
@@ -7,34 +11,49 @@ export const categories = {
         uniqueCategories: []
     },
     init() {
-        this.getFilteredDishesByCategory(this.uniqueCategories)
+
+        this.getFilteredDishesByCategory()
         this.getDishesByCategory()
-    }
-}
+        this.renderCategories()
+    },
 
+    getFilteredDishesByCategory() {
 
-export function getFilteredDishesByCategory(uniqueCategories) {
+        return this.vars.uniqueCategories.map((categoryName) => {
+            const categoryDishes = dishes.filter((dish) => dish.category === categoryName)
 
-    return uniqueCategories.map((categoryName) => {
-        const categoryDishes = dishes.filter((dish) => dish.category === categoryName)
+            return {
+                name: categoryName,
+                dishes: categoryDishes
+            }
+        })
+    },
 
-        return {
-            name: categoryName,
-            dishes: categoryDishes
+    getDishesByCategory() {
+        for (const dishData of dishes) {
+            const dish = new DishModel(dishData)
+            this.vars.categories.push(dish.category)
         }
-    })
-}
+        // löscht alle duplikate raus und macht es zum "Array"
+        this.vars.uniqueCategories = [...new Set(this.vars.categories)]
 
-export function getDishesByCategory() {
-    for (const dishData of dishes) {
-        const dish = new DishModel(dishData)
-        this.categories.push(dish.category)
+        const dishesByCategory = this.getFilteredDishesByCategory(this.vars.uniqueCategories)
+
+
+        return dishesByCategory
+    },
+
+    renderCategories() {
+        const categoriesHTML = document.querySelector('[data-category-list]')
+
+
+        for (const category of this.getDishesByCategory()) {
+            categoriesHTML.innerHTML += getCategoryHTML(category)
+            for (const dish of category.dishes) {
+                categoriesHTML.innerHTML += getDishHTML(dish)
+            }
+        }
+        addEventTrigger()
 
     }
-    // löscht alle duplikate raus und macht es zum "Array"
-    const uniqueCategories = [...new Set(categories)]
-
-    const dishesByCategory = getFilteredDishesByCategory(uniqueCategories)
-
-    return dishesByCategory
 }
