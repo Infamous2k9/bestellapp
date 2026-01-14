@@ -1,17 +1,40 @@
-const itemList = document.querySelector("[data-item-list]")
+import { Dish as DishModel } from "../models/dish.model"
+import { dishes } from "@data/database"
 
-export function createNewCategory(category) {
+export const categories = {
+    vars: {
+        categories: [],
+        uniqueCategories: []
+    },
+    init() {
+        this.getFilteredDishesByCategory(this.uniqueCategories)
+        this.getDishesByCategory()
+    }
+}
 
-    const sectionCategory = document.createElement("section")
-    const sectionTitle = document.createElement("h3")
 
+export function getFilteredDishesByCategory(uniqueCategories) {
 
-    sectionCategory.setAttribute("class", "category__wrapper")
-    sectionTitle.setAttribute("class", "category__name")
+    return uniqueCategories.map((categoryName) => {
+        const categoryDishes = dishes.filter((dish) => dish.category === categoryName)
 
-    sectionTitle.innerHTML = category
+        return {
+            name: categoryName,
+            dishes: categoryDishes
+        }
+    })
+}
 
-    sectionCategory.appendChild(sectionTitle)
+export function getDishesByCategory() {
+    for (const dishData of dishes) {
+        const dish = new DishModel(dishData)
+        this.categories.push(dish.category)
 
-    itemList.appendChild(sectionCategory)
+    }
+    // löscht alle duplikate raus und macht es zum "Array"
+    const uniqueCategories = [...new Set(categories)]
+
+    const dishesByCategory = getFilteredDishesByCategory(uniqueCategories)
+
+    return dishesByCategory
 }
