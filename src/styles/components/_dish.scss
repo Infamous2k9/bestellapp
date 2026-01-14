@@ -1,7 +1,11 @@
 .dish {
+  display: flex;
+  justify-content: space-between;
   &__image {
-    height: 350px;
-    aspect-ratio: 1/1;
+    width: auto;
+    height: 100px;
+    aspect-ratio: 1.8/1;
+    object-fit: contain;
   }
   &__price {
     font-size: 32px;
