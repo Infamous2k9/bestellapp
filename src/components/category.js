@@ -11,7 +11,6 @@ export const categories = {
         uniqueCategories: []
     },
     init() {
-
         this.getFilteredDishesByCategory()
         this.getDishesByCategory()
         this.renderCategories()
@@ -46,12 +45,8 @@ export const categories = {
     renderCategories() {
         const categoriesHTML = document.querySelector('[data-category-list]')
 
-
         for (const category of this.getDishesByCategory()) {
             categoriesHTML.innerHTML += getCategoryHTML(category)
-            for (const dish of category.dishes) {
-                categoriesHTML.innerHTML += getDishHTML(dish)
-            }
         }
         addEventTrigger()
 
