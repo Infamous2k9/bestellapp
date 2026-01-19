@@ -1,7 +1,6 @@
 import { Dish as DishModel } from "../models/dish.model"
 import { dishes } from "@data/database"
 import { getCategoryHTML } from "../templates/category"
-import { getDishHTML } from "../templates/dish"
 import { addEventTrigger } from "./dish"
 
 
@@ -43,10 +42,10 @@ export const categories = {
     },
 
     renderCategories() {
-        const categoriesHTML = document.querySelector('[data-category-list]')
+        const categoryListRef = document.querySelector('[data-category-list]')
 
         for (const category of this.getDishesByCategory()) {
-            categoriesHTML.innerHTML += getCategoryHTML(category)
+            categoryListRef.innerHTML += getCategoryHTML(category)
         }
         addEventTrigger()
 
