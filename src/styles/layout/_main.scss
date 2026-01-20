@@ -1,0 +1,15 @@
+@use '../base/variables' as *;
+@use '../base/typography' as *;
+
+main > header{
+  height: 50vh;
+  background-image: url(../../../assets/img/hero-bg.png);
+  object-fit: cover;
+}
+
+.profile-img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  transform: translate(50%, 100%);
+}

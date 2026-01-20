@@ -1,0 +1,23 @@
+@use './variables' as *;
+
+body {
+  font-family: $font-main;
+  color: $dark;
+  background: $white;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: $gray;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
