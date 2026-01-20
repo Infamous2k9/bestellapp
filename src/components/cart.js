@@ -1,102 +1,71 @@
-import { renderCartItemHTML, renderCartItemAdditinalHTML } from "../templates/cart.js"
 
-import { dishes } from "../data/database.js"
+import { cartStore } from "../stores/cart.js"
+import { renderCartItemHTML } from "../templates/cart-item.js"
+import { renderCartAdditionalHTML } from "../templates/cart-additional.js"
 
-
+const cartListRef = document.querySelector('[data-basket-list]')
+const cartAdditionalRef = document.querySelector('[data-basket-prices]')
 
 export const cart = {
-    vars: {
-        deliveryFee: true,
-        cartDishes: [],
-        prices: {
-            subTotal: 0,
-            deliveryFeePrice: 4.99,
-            total: 0
-        }
+    init() {
+        cartStore.init()
+        this.renderCartList()
     },
-
-    addCartItem(index) {
-        let newCartDish = {
-            amount: 1,
-            name: dishes[index].name,
-            price: dishes[index].price,
-            amountPrice: 1 * dishes[index].price
-        }
-        this.vars.cartDishes.push(newCartDish)
-        this.getCart()
-    },
-
-    getCart() {
-        let cartListRef = document.querySelector('[data-basket-list]')
-        let cartPricesRef = document.querySelector('[data-basket-prices]')
+    renderCartList() {
+        let cartList = cartStore.getCartData()
         cartListRef.innerHTML = ""
-        for (const element of this.vars.cartDishes) {
-            cartListRef.innerHTML += renderCartItemHTML(element, this.vars.cartDishes.indexOf(element))
-            this.calculateAdditional(element, this.vars.deliveryFee)
-            cartPricesRef.innerHTML = renderCartItemAdditinalHTML(this.vars.prices)
+
+        for (const element of cartList.cartItems) {
+            cartListRef.innerHTML += renderCartItemHTML(element)
         }
-        this.addEventTriggerToItem()
-
+        cartAdditionalRef.innerHTML = renderCartAdditionalHTML(cartList)
+        this.addEventTrigger()
     },
 
-    calculateAdditional(element, fee) {
-        this.vars.prices.subTotal += element.amountPrice
-
-        if (fee) {
-            this.vars.prices.total = this.vars.prices.deliveryFeePrice + this.vars.prices.subTotal
-        } else {
-            this.vars.prices.total = this.vars.prices.subTotal
-        }
+    addToCart(dishId) {
+        cartStore.addToCart(dishId)
+        this.renderCartList()
     },
+    addEventTrigger() {
+        const cartDelBtnRefs = document.querySelectorAll('*[data-cart-del-btn]')
+        const cartAddBtnRefs = document.querySelectorAll('*[data-cart-add-btn]')
 
-    decreaseAmount(index) {
-        this.vars.cartDishes[index].amount -= 1
-        if (this.vars.cartDishes[index].amount <= 0) {
-            this.deleteCartItem(index)
-        } else {
-            this.vars.cartDishes[index].amountPrice = this.calculateAmountPrice(this.vars.cartDishes[index].price, this.vars.cartDishes[index].amount)
-            this.getCart()
-        }
-    },
-
-    increaseAmount(index) {
-        this.vars.cartDishes[index].amount += 1
-        this.vars.cartDishes[index].amountPrice = this.calculateAmountPrice(this.vars.cartDishes[index].price, this.vars.cartDishes[index].amount)
-        this.getCart()
-    },
-
-    deleteCartItem(index) {
-        this.vars.cartDishes.splice(index, 1)
-        this.getCart()
-    },
-
-    calculateAmountPrice(price, amount) {
-        return price * amount
-    },
-
-    addEventTriggerToItem() {
-        let cartItemsRef = document.querySelectorAll("*[data-cart-item-amount]")
-        cartItemsRef.forEach((element, index) => {
-
-            let delBtn = document.createElement("button")
-            delBtn.innerHTML = "-"
-            delBtn.classList.add("cart-item__delete-btn")
-            delBtn.addEventListener("click", () => {
-                this.decreaseAmount(index)
+        for (const decreaseBtn of cartDelBtnRefs) {
+            const dishId = decreaseBtn.getAttribute("data-cart-del-btn")
+            decreaseBtn.addEventListener("click", () => {
+                cartStore.changeQuantity(dishId, 'decrease')
+                this.renderCartList()
             })
-            let addBtn = document.createElement("button")
-            addBtn.innerHTML = "+"
-            addBtn.classList.add("cart-item__delete-btn")
-            addBtn.addEventListener("click", () => {
-                this.increaseAmount(index)
+        }
+
+        for (const increaseBtn of cartAddBtnRefs) {
+            const dishId = increaseBtn.getAttribute("data-cart-add-btn")
+            increaseBtn.addEventListener("click", () => {
+                cartStore.changeQuantity(dishId, 'increase')
+                this.renderCartList()
             })
-            let itemAmount = document.createElement("span")
-            itemAmount.innerHTML = this.vars.cartDishes[index].amount
-            element.appendChild(delBtn)
-            element.appendChild(itemAmount)
-            element.appendChild(addBtn)
+        }
+
+        const takeInRef = document.getElementById("takeIn")
+        const takeOutRef = document.getElementById("takeOut")
+
+        takeInRef.addEventListener("change", () => {
+            if (takeInRef.checked) {
+                cartStore.setDeliveryType("takeIn")
+                this.renderCartList()
+            }
+        })
+        takeOutRef.addEventListener("change", () => {
+            if (takeOutRef.checked) {
+                cartStore.setDeliveryType("takeOut")
+                this.renderCartList()
+            }
         })
 
-    },
+        const checkoutRef = document.querySelector("*[data-cart-checkout]")
 
+        checkoutRef.addEventListener("click", () => {
+
+        })
+    }
 }

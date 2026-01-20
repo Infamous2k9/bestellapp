@@ -2,6 +2,7 @@
 export const dishes = [
     //  Ramen
     {
+        "id": "01",
         "name": "Shoyu Ramen",
         "description": "Sojasaucenbrühe, Schweinefleisch, Ei, Frühlingszwiebeln",
         "price": 12.90,
@@ -9,6 +10,7 @@ export const dishes = [
         "image": "./assets/img/shoyu-ramen.png",
     },
     {
+        "id": "02",
         "name": "Tonkotsu Ramen",
         "description": "Cremige Schweineknochenbrühe, Chashu, Ei, Knoblauchöl",
         "price": 13.90,
@@ -16,6 +18,7 @@ export const dishes = [
         "image": "./assets/img/tonkotsu-ramen.png",
     },
     {
+        "id": "03",
         "name": "Miso Ramen",
         "description": "Miso-Brühe, Hackfleisch, Mais, Butter, Frühlingszwiebeln",
         "price": 13.50,
@@ -23,6 +26,7 @@ export const dishes = [
         "image": "./assets/img/miso-ramen.png",
     },
     {
+        "id": "04",
         "name": "Veggie Ramen",
         "description": "Gemüsebrühe, Tofu, Pak Choi, Pilze",
         "price": 11.90,
@@ -30,6 +34,7 @@ export const dishes = [
         "image": "./assets/img/veggie-ramen.png",
     },
     {
+        "id": "05",
         "name": "Spicy Ramen",
         "description": "Scharfe Brühe, Schweinefleisch, Chiliöl, Ei",
         "price": 14.20,
@@ -39,6 +44,7 @@ export const dishes = [
 
     //  Sushi
     {
+        "id": "06",
         "name": "Lachs Nigiri",
         "description": "Reis, frischer Lachs",
         "price": 6.50,
@@ -46,6 +52,7 @@ export const dishes = [
         "image": "./assets/img/lachs-nigiri.png",
     },
     {
+        "id": "07",
         "name": "Avocado Maki",
         "description": "Reis, Avocado, Nori",
         "price": 5.20,
@@ -53,6 +60,7 @@ export const dishes = [
         "image": "./assets/img/avocado-maki.png",
     },
     {
+        "id": "08",
         "name": "California Roll",
         "description": "Surimi, Avocado, Gurke",
         "price": 7.90,
@@ -60,6 +68,7 @@ export const dishes = [
         "image": "./assets/img/california-roll.png",
     },
     {
+        "id": "09",
         "name": "Tempura Roll",
         "description": "Garnelen-Tempura, Avocado, Sesam",
         "price": 8.90,
@@ -67,6 +76,7 @@ export const dishes = [
         "image": "./assets/img/tempura-roll.png",
     },
     {
+        "id": "10",
         "name": "Veggie Roll",
         "description": "Gurke, Avocado, Karotte",
         "price": 6.80,
@@ -76,6 +86,7 @@ export const dishes = [
 
     //  Beilagen
     {
+        "id": "11",
         "name": "Gyoza",
         "description": "Japanische Teigtaschen mit Fleischfüllung",
         "price": 5.90,
@@ -83,6 +94,7 @@ export const dishes = [
         "image": "./assets/img/gyoza.png",
     },
     {
+        "id": "12",
         "name": "Edamame",
         "description": "Gedämpfte Sojabohnen mit Meersalz",
         "price": 4.50,
@@ -90,6 +102,7 @@ export const dishes = [
         "image": "./assets/img/edamame.png",
     },
     {
+        "id": "13",
         "name": "Wakame Salat",
         "description": "Algen, Sesam, Sojasauce",
         "price": 4.90,
@@ -97,6 +110,7 @@ export const dishes = [
         "image": "./assets/img/wakame.png",
     },
     {
+        "id": "14",
         "name": "Chicken Karaage",
         "description": "Frittiertes Hähnchen, japanisch mariniert",
         "price": 6.90,
@@ -104,6 +118,7 @@ export const dishes = [
         "image": "./assets/img/karaage.png",
     },
     {
+        "id": "15",
         "name": "Reis",
         "description": "Gedämpfter japanischer Reis",
         "price": 2.50,
@@ -113,6 +128,7 @@ export const dishes = [
 
     //  Getränke
     {
+        "id": "16",
         "name": "Grüner Tee",
         "description": "Traditioneller japanischer Grüntee",
         "price": 2.80,
@@ -120,6 +136,7 @@ export const dishes = [
         "image": "./assets/img/gruener-tee.png",
     },
     {
+        "id": "17",
         "name": "Ramune",
         "description": "Japanische Limonade",
         "price": 3.50,
@@ -127,6 +144,7 @@ export const dishes = [
         "image": "./assets/img/ramune.png",
     },
     {
+        "id": "18",
         "name": "Cola",
         "description": "Erfrischungsgetränk",
         "price": 3.00,
@@ -134,6 +152,7 @@ export const dishes = [
         "image": "./assets/img/cola.png",
     },
     {
+        "id": "19",
         "name": "Mineralwasser",
         "description": "Still oder Sprudel",
         "price": 2.50,
@@ -141,6 +160,7 @@ export const dishes = [
         "image": "./assets/img/wasser.png",
     },
     {
+        "id": "20",
         "name": "Eistee Pfirsich",
         "description": "Kalter Schwarztee mit Pfirsichgeschmack",
         "price": 3.20,
@@ -148,15 +168,3 @@ export const dishes = [
         "image": "./assets/img/eistee.png",
     },
 ];
-
-// Warenkorb
-export let basket = [{
-    "item": [{
-        "name": "",
-        "amount": 0,
-        "price": 0,
-    }],
-    "subotal": 0,
-    "total": 0,
-    "feeState": false,
-}]

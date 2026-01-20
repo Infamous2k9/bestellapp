@@ -1,20 +1,17 @@
+import { cartStore } from "../stores/cart.js";
 import { cart } from "./cart.js";
 
 export function addEventTrigger() {
 
-    const additional = document.querySelectorAll("*[data-dish-additional]")
+    const additional = document.querySelectorAll("*[data-add-to-cart]")
 
-    additional.forEach((element, index) => {
-        const addCartBtn = document.createElement('button')
-        addCartBtn.innerHTML = "add to cart";
-        addCartBtn.setAttribute("class", "dish__add-btn")
+    for (const element of additional) {
+        element.addEventListener("click", () => {
+            cart.addToCart(element.getAttribute("data-add-to-cart"));
 
-        addCartBtn.addEventListener('click', () => {
-
-            cart.addCartItem(index)
         })
+    }
 
-        element.appendChild(addCartBtn)
-    })
+
 
 }

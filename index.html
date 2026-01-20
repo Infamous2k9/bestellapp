@@ -38,15 +38,15 @@
 
         <aside class="cart">
             <h3 class="cart__name">Warenkorb</h3>
-            <div class="cart__delivery-fee" data-basket-delivery-fee>
+            <div class="cart__delivery-fee">
                 <div>
-                    <input name="delivery-type" type="radio" id="takeOut" value="true" checked />
-                    <label for="takeOut">zum Abholen</label>
+                    <input name="delivery-type" checked type="radio" id="takeOut" value="true" data-basket-delivery-fee />
+                    <label for="takeOut">Zum Liefern</label>
                 </div>
 
                 <div>
-                    <input name="delivery-type" type="radio" id="takeIn" value="false" />
-                    <label for="takeIn">zum Mitnehmen</label>
+                    <input name="delivery-type" type="radio" id="takeIn" value="false" data-basket-delivery-fee/>
+                    <label for="takeIn">Zum Hier Essen</label>
                 </div>
             </div>
 
