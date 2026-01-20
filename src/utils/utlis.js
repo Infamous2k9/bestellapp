@@ -20,7 +20,3 @@ export const formatToCurrency = (amount = 0, currency = "EUR", locale = "de-DE")
     return new Intl.NumberFormat(locale, { style: "currency", currency }).format(amount);
 
 }
-
-export function randomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}

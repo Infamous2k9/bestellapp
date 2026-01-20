@@ -4,7 +4,9 @@ export class Dish {
     constructor(dishData) {
         this.dish = dishData
     }
-
+    get id() {
+        return this.dish.id
+    }
     get name() {
         return this.dish.name
     }

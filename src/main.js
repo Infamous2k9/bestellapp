@@ -6,6 +6,6 @@ import { cart } from "./components/cart";
 
 function init() {
     categories.init()
-    cart.changeDeliveryFee()
+    cart.init()
 }
 init()
