@@ -7,6 +7,7 @@ import { dishes } from "../data/database.js"
 export const cart = {
     vars: {
         deliveryFee: true,
+        deliveryFeeAmount: 4.99,
         cartDishes: [],
         prices: {
             subTotal: 0,
@@ -14,19 +15,64 @@ export const cart = {
             total: 0
         }
     },
+    save() {
+        const cartdata = {
+            cartItems: this.vars.cartDishes,
+            subTotal: this.vars.prices.subTotal,
+            total: this.vars.prices.total
+        }
+        localStorage.setItem("cart", JSON.stringify(cartdata))
+    },
 
+    isThere(index) {
+        return this.vars.cartDishes.find((dish) => dish.name == dishes[index].name)
+    },
+    getCartItemIndex(index) {
+        return this.vars.cartDishes.findIndex((dish) => dish.name == dishes[index].name)
+    },
     addCartItem(index) {
-        let newCartDish = {
+        let newCartItem = {
             amount: 1,
             name: dishes[index].name,
             price: dishes[index].price,
-            amountPrice: 1 * dishes[index].price
         }
-        this.vars.cartDishes.push(newCartDish)
+        newCartItem.amountPrice = newCartItem.amount * newCartItem.price
+        const isInCart = this.isThere(index)
+        if (isInCart) {
+            const cartIndex = this.getCartItemIndex(index)
+            this.increaseAmount(this.vars.cartDishes[cartIndex])
+        } else {
+            this.vars.cartDishes.push(newCartItem)
+        }
+
+        // if (this.vars.cartDishes.length > 0) {
+        //     for (const element of this.vars.cartDishes) {
+        //         if (element.name == dishes[index].name) {
+        //             console.log("vorhanden");
+        //             this.increaseAmount(this.vars.cartDishes.indexOf(element))
+        //         } else {
+        //             this.vars.cartDishes.push(newCartItem)
+        //         }
+        //     }
+        // } else {
+        //     this.vars.cartDishes.push(newCartItem)
+        // }
+        this.save()
         this.getCart()
     },
 
     getCart() {
+        this.vars.prices.subTotal = 0;
+        this.vars.prices.total = 0;
+
+        const feeTypes = document.querySelectorAll('*[data-basket-delivery-fee]');
+
+        feeTypes.forEach((element) => {
+            element.addEventListener("change", () => {
+                this.changeDeliveryFee();
+            });
+        });
+
         let cartListRef = document.querySelector('[data-basket-list]')
         let cartPricesRef = document.querySelector('[data-basket-prices]')
         cartListRef.innerHTML = ""
@@ -50,28 +96,45 @@ export const cart = {
     },
 
     decreaseAmount(index) {
-        this.vars.cartDishes[index].amount -= 1
-        if (this.vars.cartDishes[index].amount <= 0) {
+        this.vars.cartDishes[this.getCartItemIndex(index)].amount -= 1
+        if (this.vars.cartDishes[this.getCartItemIndex(index)].amount <= 0) {
             this.deleteCartItem(index)
         } else {
-            this.vars.cartDishes[index].amountPrice = this.calculateAmountPrice(this.vars.cartDishes[index].price, this.vars.cartDishes[index].amount)
             this.getCart()
         }
     },
 
     increaseAmount(index) {
-        this.vars.cartDishes[index].amount += 1
-        this.vars.cartDishes[index].amountPrice = this.calculateAmountPrice(this.vars.cartDishes[index].price, this.vars.cartDishes[index].amount)
+        this.vars.cartDishes[this.getCartItemIndex(index)].amount += 1
         this.getCart()
     },
 
     deleteCartItem(index) {
-        this.vars.cartDishes.splice(index, 1)
+        this.vars.cartDishes.splice(this.getCartItemIndex(index), 1)
         this.getCart()
     },
 
-    calculateAmountPrice(price, amount) {
-        return price * amount
+    //done by chatty
+    changeDeliveryFee() {
+        let selected = document.querySelector("input[name=delivery-type]:checked")
+
+        // String → Boolean umwandeln
+        this.vars.deliveryFee = selected.value === "true";
+
+        // Lieferkosten setzen
+
+        this.vars.prices.deliveryFeePrice = this.vars.deliveryFee ? this.vars.deliveryFeeAmount : 0
+
+
+        this.vars.cartDishes.forEach(element => {
+            this.calculateAdditional(element, this.vars.deliveryFee);
+        });
+
+        // Cart neu rendern
+        this.getCart();
+
+        //kein plan why????
+
     },
 
     addEventTriggerToItem() {

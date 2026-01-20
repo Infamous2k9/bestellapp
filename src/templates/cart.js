@@ -1,6 +1,6 @@
 import { formatToCurrency } from "../utils/utlis"
 
-export function renderCartItemHTML(cartItem, index) {
+export function renderCartItemHTML(cartItem) {
     return `
         <div class="cart-item" data-cart-item>
             <p class="cart-item__title">${cartItem.name}</p>

@@ -10,7 +10,6 @@ export function addEventTrigger() {
         addCartBtn.setAttribute("class", "dish__add-btn")
 
         addCartBtn.addEventListener('click', () => {
-
             cart.addCartItem(index)
         })
 

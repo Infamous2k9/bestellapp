@@ -2,6 +2,7 @@
 export const dishes = [
     //  Ramen
     {
+        "id": "01",
         "name": "Shoyu Ramen",
         "description": "Sojasaucenbrühe, Schweinefleisch, Ei, Frühlingszwiebeln",
         "price": 12.90,
