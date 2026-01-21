@@ -1,0 +1,12 @@
+@use "../base/_variables" as *;
+
+.category{
+    margin-top: 16px;
+
+    &__name{
+        text-align: center;
+        background-color: $orange;
+        color: $white;
+        padding: 8px;
+    }
+}

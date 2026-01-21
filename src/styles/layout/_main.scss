@@ -2,14 +2,80 @@
 @use '../base/typography' as *;
 
 main > header{
-  height: 50vh;
-  background-image: url(../../../assets/img/hero-bg.png);
-  object-fit: cover;
+
 }
 
-.profile-img{
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  transform: translate(50%, 100%);
+.hero-wrapper{
+  height: 35vh;
+  margin-top: 16px;
+  &__hero-img{
+    border-radius: $radius;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__profile-img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    transform: translate(calc(50vw - 65px), -50px);
+    box-shadow: $shadow;
+  }
 }
+
+.hero-title{
+  margin-top: 50px;
+
+  &__name{
+    text-align: center;
+  }
+
+  &__rating{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__rating-wrapper{
+    display: flex;
+    max-width: fit-content;
+    
+    gap: 4px;
+    padding: 8px;
+    background-color: $orange-soft;
+  }
+  &__description{
+    text-align: center;
+    padding-top: 8px;
+  }
+}
+
+.mobile-nav{
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  background-color: $dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  & > nav {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__img{
+    height: 30px;
+    width: 30px;
+  }
+
+  &__img:hover{
+    cursor: pointer;
+    filter: brightness(0) saturate(100%) invert(43%) sepia(100%) saturate(409%) hue-rotate(344deg) brightness(106%) contrast(96%);
+  }
+}
+

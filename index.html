@@ -34,27 +34,35 @@
 
     </header>
     <main>
-        <header>
+        <header class="p-lr-16">
+            <div class="hero-wrapper">
 
-            <img class="profile-img" src="./assets/img/profile.png" alt="Restuarnt Profil Image">
-
-        </header>
-        <section>
-            <div>
-                <h1>Tokyo Street Kitchen</h1>
-                <div>
-                    <svg class="star" xmlns="http://www.w3.org/2000/svg" width="23" height="22" fill="none">
-                        <path fill="#363534"
-                            d="M4.89 21.59a.5.5 0 0 1-.747-.539l1.619-7.057a.5.5 0 0 0-.158-.489L.17 8.755a.5.5 0 0 1 .286-.875l7.17-.628a.5.5 0 0 0 .418-.305l2.782-6.64a.5.5 0 0 1 .923 0l2.782 6.64a.5.5 0 0 0 .417.305l7.171.628a.5.5 0 0 1 .286.875l-5.432 4.75a.5.5 0 0 0-.159.488l1.619 7.058a.5.5 0 0 1-.748.54l-6.137-3.736a.5.5 0 0 0-.52 0L4.89 21.59Z" />
-                    </svg>
-                    <span>4.1</span>
-                    <span>(371)</span>
-                </div>
-                <h2>Echte Street-Food-Vibes aus Japan.</h2>
+                <img class="hero-wrapper__hero-img" src="./assets/img/hero-bg.png" alt="Restuarnt Profil Image">
+                <img class="hero-wrapper__profile-img" src="./assets/img/profile.png" alt="Restuarnt Profil Image">
             </div>
-        </section>
 
-        <section class="cateogry" data-category-list></section>
+            <section class="hero-title">
+                <div>
+                    <h1 class="hero-title__name">Tokyo Street Kitchen</h1>
+                    <div class="hero-title__rating">
+                        <div class="hero-title__rating-wrapper">
+
+                            <svg class="hero-rating__star" xmlns="http://www.w3.org/2000/svg" width="23" height="22"
+                                fill="none">
+                                <path fill="#363534"
+                                    d="M4.89 21.59a.5.5 0 0 1-.747-.539l1.619-7.057a.5.5 0 0 0-.158-.489L.17 8.755a.5.5 0 0 1 .286-.875l7.17-.628a.5.5 0 0 0 .418-.305l2.782-6.64a.5.5 0 0 1 .923 0l2.782 6.64a.5.5 0 0 0 .417.305l7.171.628a.5.5 0 0 1 .286.875l-5.432 4.75a.5.5 0 0 0-.159.488l1.619 7.058a.5.5 0 0 1-.748.54l-6.137-3.736a.5.5 0 0 0-.52 0L4.89 21.59Z" />
+                            </svg>
+                            <span>4.1</span>
+                            <span>(371)</span>
+
+                        </div>
+                    </div>
+                    <h2 class="hero-title__description">Echte Street-Food-Vibes aus Japan.</h2>
+                </div>
+            </section>
+        </header>
+
+        <section class="category" data-category-list></section>
 
         <aside class="cart">
             <h3 class="cart__name">Warenkorb</h3>
@@ -67,7 +75,7 @@
 
                 <div>
                     <input name="delivery-type" type="radio" id="takeIn" value="false" data-basket-delivery-fee />
-                    <label for="takeIn">Zum Hier Essen</label>
+                    <label for="takeIn">Zum Abholen</label>
                 </div>
             </div>
 
@@ -82,6 +90,14 @@
     <footer>
         <small>&copy; 2025 Andre Funk</small>
     </footer>
+    <aside class="mobile-nav">
+        <nav class="moblie-nav__wrapper">
+            <img class="mobile-nav__img" src="./assets/icons/home.svg" alt="Home icon">
+            <img class="mobile-nav__img" src="./assets/icons/person.svg" alt="Home icon">
+            <img class="mobile-nav__img" src="./assets/icons/takeout_dining_2.svg" alt="Home icon">
+            <img class="mobile-nav__img" src="./assets/icons/shopping_cart.svg" alt="Home icon">
+        </nav>
+    </aside>
 </body>
 <script src="./src/main.js" type="module"></script>
 
