@@ -1,7 +1,8 @@
 
 import { cartStore } from "../stores/cart.js"
 import { renderCartItemHTML } from "../templates/cart-item.js"
-import { renderCartAdditionalHTML, renderTrashbinHTML } from "../templates/cart-additional.js"
+import { renderCartAdditionalHTML, renderTrashbinHTML } from "../templates/cart-additional.js";
+import Toastify from 'toastify-js';
 
 const cartListRef = document.querySelector('[data-basket-list]')
 const cartAdditionalRef = document.querySelector('[data-basket-prices]')
@@ -87,7 +88,18 @@ export const cart = {
         const checkoutRef = document.querySelector("*[data-cart-checkout]")
 
         checkoutRef.addEventListener("click", () => {
-
+            Toastify({
+                text: "Vielen dank für deinen Einkauf!",
+                duration: 3000,
+                close: true,
+                gravity: "bottom", // `top` or `bottom`
+                position: "center", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                offset: {
+                    y: 80
+                },
+                className: "toast-test"
+            }).showToast();
         })
     },
 

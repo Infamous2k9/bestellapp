@@ -1,7 +1,7 @@
-
-import { cartStore } from "../stores/cart.js";
+import Toastify from 'toastify-js'
 import { cart } from "./cart.js";
-import { toast } from "./toast.js";
+import { cartStore } from '../stores/cart.js';
+
 
 export function addEventTrigger() {
 
@@ -11,7 +11,26 @@ export function addEventTrigger() {
 
         element.addEventListener("click", () => {
             cart.addToCart(dishId);
-            toast.showToast("Added")
+            const dishName = cartStore.findDishById(dishId).name
+
+            Toastify({
+                text: dishName + " wurde zum Warenkorb hinzugefügt",
+                duration: 3000,
+                close: true,
+                gravity: "bottom", // `top` or `bottom`
+                position: "center", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                offset: {
+                    y: 80
+                },
+                className: "toast-test"
+            }).showToast();
+
+
+
+
+
+
         })
     }
 }
