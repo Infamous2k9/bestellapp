@@ -1,9 +1,13 @@
 import { formatToCurrency } from "../utils/utlis"
+import { renderTrashbinHTML } from "./cart-additional"
 
 export function renderCartItemHTML(cartItem) {
     return `
         <div class="cart-item" data-cart-item>
+            <div class="cart-item__head-wrapper">
             <p class="cart-item__title">${cartItem.quantity}x ${cartItem.name}</p>
+            <button class="cart-item__del-btn d-none" data-cart-trashbin=${cartItem.quantity} data-trash-id=${cartItem.id}>${renderTrashbinHTML()}</button>
+            </div>
             <div class="cart-item__additional">
                 <div data-cart-item-amount>
                     <div class="cart-item__amount">

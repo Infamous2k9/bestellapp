@@ -77,3 +77,19 @@
   }
 }
 
+#toast{
+  position: sticky;
+  bottom: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  &>p{
+    padding: 16px;
+    width: fit-content;
+    background-color: $orange;
+    border-radius: $radius;
+    color: $white;
+  }
+}
+

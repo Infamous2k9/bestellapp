@@ -14,7 +14,9 @@ export function getDishHTML(dish) {
 
         <div class="dish__additional" data-dish-additional>
             <p class="dish__price">${formatToCurrency(dish.price)}</p>
+            <div data-added-btns>
             <button class="dish__add-btn" data-add-to-cart=${dish.id}>Hinzufügen</button>
+            </div>
         </div>
     </article>
     `

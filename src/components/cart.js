@@ -20,16 +20,32 @@ export const cart = {
         }
         cartAdditionalRef.innerHTML = renderCartAdditionalHTML(cartList)
         this.addEventTrigger()
+
+        if (cartListRef.innerHTML === "") {
+            cartListRef.innerHTML = '<p class="empty-cart">Warenkorb ist leer</p>'
+        }
     },
 
     addToCart(dishId) {
         cartStore.addToCart(dishId)
         this.renderCartList()
     },
+
     addEventTrigger() {
         const cartDelBtnRefs = document.querySelectorAll('*[data-cart-del-btn]')
         const cartAddBtnRefs = document.querySelectorAll('*[data-cart-add-btn]')
-        const currentAmount = document.querySelectorAll('*[data-cart-item-current-amount]')
+        const trashbinBtnRef = document.querySelectorAll('*[data-cart-trashbin]')
+
+        for (const trashBtn of trashbinBtnRef) {
+            const currentAmount = trashBtn.getAttribute("data-cart-trashbin")
+
+            if (currentAmount >= 2) {
+                trashBtn.classList.toggle("d-none")
+                trashBtn.addEventListener("click", () => {
+                    this.deleteCartItem(trashBtn.getAttribute("data-trash-id"))
+                })
+            }
+        }
 
         for (const decreaseBtn of cartDelBtnRefs) {
             const dishId = decreaseBtn.getAttribute("data-cart-del-btn")
@@ -37,8 +53,6 @@ export const cart = {
             if (decreaseBtn.getAttribute("data-cart-item-current-amount") == "1") {
                 decreaseBtn.innerHTML = renderTrashbinHTML()
             }
-
-
 
             decreaseBtn.addEventListener("click", () => {
                 cartStore.changeQuantity(dishId, 'decrease')
@@ -75,5 +89,16 @@ export const cart = {
         checkoutRef.addEventListener("click", () => {
 
         })
-    }
+    },
+
+    deleteCartItem(dishId) {
+        let cartList = cartStore.getCartData()
+        for (const element of cartList.cartItems) {
+            if (element.id == dishId) {
+                cartList.cartItems = cartList.cartItems.splice(cartStore.findCartItemIndex(dishId), 1)
+            }
+        }
+        this.renderCartList()
+    },
+
 }

@@ -4,6 +4,7 @@ import { getCategoryHTML } from "../templates/category"
 import { addEventTrigger } from "./dish"
 
 
+
 export const categories = {
     vars: {
         categories: [],

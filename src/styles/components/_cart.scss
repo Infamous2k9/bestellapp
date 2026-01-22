@@ -1,7 +1,15 @@
 @use '../base/variables' as *;
 
+.empty-cart {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 16px;
+}
+
+
 .cart{
-    height: 80%;
+    height: fit-content;
+    max-height: 80%;
     color: $orange-soft;
     display: flex;
     flex-direction: column;
@@ -63,7 +71,6 @@
     }
 
     &__dishes-list{
-        margin-top: 16px;
         height: auto;
         overflow: scroll;
         flex-grow: 1;
@@ -115,11 +122,16 @@
 
 .cart-item{
     padding: 16px;
-    margin-top: 16px ;
+    margin-top: 16px;
     background-color: $orange-soft;
     border-radius: $radius-sm;
     color: $dark;
 
+    &__head-wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
     &__additional{
         display: flex;
         justify-content: space-between;
