@@ -2,7 +2,7 @@ import { formatToCurrency } from "../utils/utlis.js"
 
 export function getDishHTML(dish) {
     return `
-    <article class="dish">
+    <article class="dish m-16 p-16">
         <figure class="dish__thumb">
             <img class="dish__image" src="${dish.image}" alt="${dish.name} Image">
         </figure>

@@ -1,0 +1,203 @@
+@use '../base/variables' as *;
+
+.cart{
+    height: 80%;
+    color: $orange-soft;
+    display: flex;
+    flex-direction: column;
+
+    &__headline{
+        display: flex;
+    }
+
+    &__name{
+        text-align: center;
+        padding: 16px 0;
+    }
+
+    &__close-btn{
+        font-weight: 900;
+        font-size: 22px;
+        cursor: pointer;
+        margin-left: auto;
+
+        &:hover{
+            color: $orange;
+        }
+    }
+    
+    &__delivery-fee{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding-bottom: 8px;
+        border-bottom: 2px solid $orange-soft;
+
+        font-size: 16px;
+        font-weight: 600;
+
+        & > div > label{
+            padding: 8px 10px;
+            cursor: pointer;
+
+            &:hover{
+                color: $orange;
+            }
+        }
+
+        & > div > input[type="radio"] {
+            display: none;
+
+            &:checked{
+                +label {
+                    color: $white;
+                    background-color: $orange;
+                    border-radius: $radius;
+                }
+            }
+        }
+        & > div {
+            margin: 8px 0;
+        }
+        
+    }
+
+    &__dishes-list{
+        margin-top: 16px;
+        height: auto;
+        overflow: scroll;
+        flex-grow: 1;
+    }
+
+    &__additional{
+        padding: 8px 0 0 0;
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-top: 2px solid $orange-soft;
+    }
+
+    &__subtotal{
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+    }
+    &__delivery-fee-price{
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+    }
+    &__total{
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+
+        & > p{
+            font-size: 19px;
+            font-weight: 600;
+        }
+    }
+
+    &__pay-btn{
+        font-size: 18px;
+        font-weight: 700;
+
+        background-color: $orange;
+        color: $white;
+        border-radius: 22px;
+        padding: 12px 22px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 16px;
+    }
+}
+
+.cart-item{
+    padding: 16px;
+    margin-top: 16px ;
+    background-color: $orange-soft;
+    border-radius: $radius-sm;
+    color: $dark;
+
+    &__additional{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 16px;
+        align-items: center;
+    }
+
+    &__amount{
+        display: flex;
+        gap: 8px;
+    }
+
+    &__del-btn:hover{
+        color: $orange;
+        & > svg {
+            filter: brightness(0) saturate(100%) invert(69%) sepia(36%) saturate(6348%) hue-rotate(347deg) brightness(95%) contrast(92%);
+        }
+    }
+    &__add-btn:hover{
+        color: $orange;
+    }
+
+}
+
+
+
+// Mobile Overlay
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  display: flex; 
+  justify-content: center;
+  align-items: flex-end;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.25s ease;
+
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.cart--mobile {
+  width: 100%;
+  background: $dark;
+  border-radius: 20px 20px 0 0;
+  padding: 16px;
+  color: $white;
+
+  transform: translateY(100%);
+  opacity: 0;
+  
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+
+  .cart-overlay.active & {
+    transform: translateY(-80px);
+    opacity: 1;
+  }
+}
+
+
+
+// @media (min-width: 900px) {
+//   .cart-overlay {
+//     display: none !important;
+//   }
+
+//   .cart {
+//     position: sticky;
+//     top: 1.5rem;
+//     transform: none !important;
+//     border-radius: $radius;
+//   }
+// }
+
+

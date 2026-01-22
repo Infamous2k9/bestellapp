@@ -1,7 +1,7 @@
 
 import { cartStore } from "../stores/cart.js"
 import { renderCartItemHTML } from "../templates/cart-item.js"
-import { renderCartAdditionalHTML } from "../templates/cart-additional.js"
+import { renderCartAdditionalHTML, renderTrashbinHTML } from "../templates/cart-additional.js"
 
 const cartListRef = document.querySelector('[data-basket-list]')
 const cartAdditionalRef = document.querySelector('[data-basket-prices]')
@@ -29,9 +29,17 @@ export const cart = {
     addEventTrigger() {
         const cartDelBtnRefs = document.querySelectorAll('*[data-cart-del-btn]')
         const cartAddBtnRefs = document.querySelectorAll('*[data-cart-add-btn]')
+        const currentAmount = document.querySelectorAll('*[data-cart-item-current-amount]')
 
         for (const decreaseBtn of cartDelBtnRefs) {
             const dishId = decreaseBtn.getAttribute("data-cart-del-btn")
+
+            if (decreaseBtn.getAttribute("data-cart-item-current-amount") == "1") {
+                decreaseBtn.innerHTML = renderTrashbinHTML()
+            }
+
+
+
             decreaseBtn.addEventListener("click", () => {
                 cartStore.changeQuantity(dishId, 'decrease')
                 this.renderCartList()

@@ -63,29 +63,33 @@
         </header>
 
         <section class="category" data-category-list></section>
+        <div class="cart-overlay" data-cart-overlay>
+            <aside class="cart cart--mobile">
+                <div class="cart__headline">
+                    <h3 class="cart__name">Warenkorb</h3>
+                    <button class="cart__close-btn">X</button>
+                </div>
+                <div class="cart__delivery-fee">
+                    <div>
+                        <input name="delivery-type" checked type="radio" id="takeOut" value="true"
+                            data-basket-delivery-fee />
+                        <label for="takeOut">Zum Liefern</label>
+                    </div>
 
-        <aside class="cart">
-            <h3 class="cart__name">Warenkorb</h3>
-            <div class="cart__delivery-fee">
-                <div>
-                    <input name="delivery-type" checked type="radio" id="takeOut" value="true"
-                        data-basket-delivery-fee />
-                    <label for="takeOut">Zum Liefern</label>
+                    <div>
+                        <input name="delivery-type" type="radio" id="takeIn" value="false" data-basket-delivery-fee />
+                        <label for="takeIn">Zum Abholen</label>
+                    </div>
                 </div>
 
-                <div>
-                    <input name="delivery-type" type="radio" id="takeIn" value="false" data-basket-delivery-fee />
-                    <label for="takeIn">Zum Abholen</label>
+                <div class="cart__dishes-list" data-basket-list>
                 </div>
-            </div>
 
-            <div class="cart__dishes-list" data-basket-list>
-            </div>
+                <div class="cart__additional" data-basket-prices>
+                </div>
 
-            <div class="cart__additional" data-basket-prices>
-            </div>
-
-        </aside>
+            </aside>
+        </div>
     </main>
     <footer>
         <small>&copy; 2025 Andre Funk</small>
@@ -95,7 +99,7 @@
             <img class="mobile-nav__img" src="./assets/icons/home.svg" alt="Home icon">
             <img class="mobile-nav__img" src="./assets/icons/person.svg" alt="Home icon">
             <img class="mobile-nav__img" src="./assets/icons/takeout_dining_2.svg" alt="Home icon">
-            <img class="mobile-nav__img" src="./assets/icons/shopping_cart.svg" alt="Home icon">
+            <img class="mobile-nav__img" src="./assets/icons/shopping_cart.svg" alt="Home icon" data-mobile-cart-btn>
         </nav>
     </aside>
 </body>
