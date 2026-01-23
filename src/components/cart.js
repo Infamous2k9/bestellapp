@@ -98,6 +98,7 @@ export const cart = {
                 offset: {
                     y: 80
                 },
+                avatar: "./assets/icons/checkout.png",
                 className: "toast-test"
             }).showToast();
         })

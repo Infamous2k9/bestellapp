@@ -80,5 +80,14 @@
 .toast-test{
   background: $orange;
   border-radius: $radius;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  & > img{
+    height: 30px;
+    width: auto;
+  }
 }
+
 
