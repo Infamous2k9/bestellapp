@@ -15,7 +15,7 @@ export function addEventTrigger() {
 
             Toastify({
                 text: dishName + " wurde zum Warenkorb hinzugefügt",
-                duration: 3000,
+                duration: 1000,
                 close: true,
                 gravity: "bottom", // `top` or `bottom`
                 position: "center", // `left`, `center` or `right`

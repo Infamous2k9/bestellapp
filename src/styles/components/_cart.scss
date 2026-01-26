@@ -89,7 +89,7 @@
 
     &__dishes-list{
         height: auto;
-        overflow: scroll;
+        overflow-y: auto;
         flex-grow: 1;
     }
 

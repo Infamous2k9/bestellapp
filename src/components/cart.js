@@ -6,6 +6,7 @@ import Toastify from 'toastify-js';
 
 const cartListRef = document.querySelector('[data-basket-list]')
 const cartAdditionalRef = document.querySelector('[data-basket-prices]')
+const cartCounterRef = document.querySelector('[data-cart-counter]')
 
 export const cart = {
     init() {
@@ -25,11 +26,24 @@ export const cart = {
         if (cartListRef.innerHTML === "") {
             cartListRef.innerHTML = '<p class="empty-cart">Warenkorb ist leer</p>'
         }
+
+        cartCounterRef.innerHTML = this.countAllItems()
     },
 
     addToCart(dishId) {
         cartStore.addToCart(dishId)
         this.renderCartList()
+    },
+
+    countAllItems() {
+        let cartList = cartStore.getCartData()
+        let counter = 0
+        for (const item of cartList.cartItems) {
+            counter += item.quantity
+        }
+        console.log(counter);
+
+        return counter
     },
 
     addEventTrigger() {
@@ -90,7 +104,7 @@ export const cart = {
         checkoutRef.addEventListener("click", () => {
             Toastify({
                 text: "Vielen dank für deinen Einkauf!",
-                duration: 3000,
+                duration: 2000,
                 close: true,
                 gravity: "bottom", // `top` or `bottom`
                 position: "center", // `left`, `center` or `right`
@@ -101,6 +115,8 @@ export const cart = {
                 avatar: "./assets/icons/checkout.png",
                 className: "toast-test"
             }).showToast();
+            cartStore.clearCart()
+            this.renderCartList()
         })
     },
 
