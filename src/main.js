@@ -8,9 +8,9 @@ function init() {
     categories.init()
     cart.init()
 
-    // muss noch ausgelagert werden 
     const cartOverlay = document.querySelector('[data-cart-overlay]');
     const cartBtn = document.querySelector('[data-mobile-cart-btn]');
+    const cartRef = document.querySelector("[data-cart]");
 
     cartBtn.addEventListener('click', () => {
         cartOverlay.classList.add('active');
@@ -20,6 +20,11 @@ function init() {
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 1024 && cartOverlay.classList.contains('active')) {
             cartOverlay.classList.remove("active")
+        }
+        if (window.innerWidth <= 1024) {
+            cartRef.classList.add("cart--mobile")
+        } else {
+            cartRef.classList.remove("cart--mobile")
         }
     })
 
