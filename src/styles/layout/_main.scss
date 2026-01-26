@@ -1,16 +1,29 @@
 @use '../base/variables' as *;
 @use '../base/typography' as *;
+@use "../abstracts/index" as *;
 
 
 
 .hero-wrapper{
   height: 35vh;
   margin-top: 16px;
+  padding: 0 16px;
+  @include breakpoint(md){
+    height: 40vh;
+    padding: 0;
+    margin: 0;
+  }
+  @include breakpoint(lg){
+    height: 45vh;
+  }
   &__hero-img{
     border-radius: $radius;
     height: 100%;
     width: 100%;
     object-fit: cover;
+    @include breakpoint(md){
+    border-radius: 0;
+    }
   }
 
   &__profile-img{
@@ -19,11 +32,26 @@
     border-radius: 50%;
     transform: translate(calc(50vw - 65px), -50px);
     box-shadow: $shadow;
+    @include breakpoint(md){
+      height: 125px;
+      width: 125px;
+    }
+    @include breakpoint(lg){
+      height: 150px;
+      width: 150px;
+    }
   }
 }
 
 .hero-title{
   margin-top: 50px;
+
+  @include breakpoint(md){
+    margin-top: 75px;
+  }
+  @include breakpoint(lg){
+    margin-top: 90px;
+  }
 
   &__name{
     text-align: center;
@@ -31,23 +59,27 @@
 
   &__rating{
     width: 100%;
-    display: flex;
-    justify-content: center;
+
+    @include flex($justify-content: center);
   }
 
   &__rating-wrapper{
-    display: flex;
+    @include flex();
     max-width: fit-content;
     
     gap: 4px;
     padding: 8px;
     background-color: $orange-soft;
   }
+
   &__description{
     text-align: center;
     padding-top: 8px;
   }
 }
+
+
+// Mobile Navbar only visible on phone and Tablet
 
 .mobile-nav{
   position: sticky;
@@ -74,6 +106,10 @@
   &__img:hover{
     cursor: pointer;
     filter: brightness(0) saturate(100%) invert(43%) sepia(100%) saturate(409%) hue-rotate(344deg) brightness(106%) contrast(96%);
+  }
+
+  @include breakpoint(lg){
+    display: none !important;
   }
 }
 

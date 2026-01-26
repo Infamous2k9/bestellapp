@@ -17,6 +17,12 @@ function init() {
         document.body.style.overflow = 'hidden';
     });
 
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024 && cartOverlay.classList.contains('active')) {
+            cartOverlay.classList.remove("active")
+        }
+    })
+
     cartOverlay.addEventListener('click', (e) => {
         if (e.target === cartOverlay) {
             cartOverlay.classList.remove('active');

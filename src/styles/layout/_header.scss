@@ -1,5 +1,5 @@
 @use '../base/variables' as *;
-
+@use "../abstracts/" as *;
 
 body > header {
   background: $orange;
@@ -15,10 +15,20 @@ body > header {
   }
 
   .menu-burger {
+    display: none;
     width: 60px;
     height: 60px;
     cursor: pointer;
     margin-top: 20px;
     margin-left: 16px;
+
+    @include breakpoint(lg){
+    display: block !important;
+    }
+
+  }
+  @include breakpoint(big){
+    padding-left: calc((100% - 1440px) / 2);
+    padding-right: calc((100% - 1440px) / 2);
   }
 }

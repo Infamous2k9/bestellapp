@@ -1,13 +1,22 @@
 @use "../base/variables" as *;
+@use "../abstracts/" as *;
+
 
 .dish {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    @include flex($justify-content: space-evenly, $flex-direction: column);
     gap: 8px;
     background-color: $orange-soft;
     border-radius: $radius;
     height: fit-content;
+    @include breakpoint(md){
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 16px;
+    }
+    @include breakpoint(lg){
+        max-width: 65%;
+    }
 
     &__image {
         width: 100%;
@@ -18,24 +27,38 @@
 
     &__text{
         padding: 8px 0;
+        height: fit-content;
+        @include breakpoint(md){
+            flex-grow: 1;
+        }
     }
 
     &__additional{
         display: flex;
         justify-content: space-between;
         padding-top: 16px;
+        
+        @include breakpoint(md){
+            @include flex($flex-direction: column,$justify-content: space-between, $align-items: center);
+        }
     }
 
     &__price {
         font-size: 24px;
         font-weight: 600;
+        @include breakpoint(md){
+            font-size: 26px;
+        }
     }
 
     &__add-btn{
-        padding: 8px;
+        padding: 10px 12px;
         background-color: $white;
         border-radius: 20px;
         font-size: 16px;
         font-weight: 600;
+        @include breakpoint(md) {
+            font-size: 19px;
+        }
     }
 }

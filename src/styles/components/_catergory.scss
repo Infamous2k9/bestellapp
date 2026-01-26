@@ -1,4 +1,5 @@
 @use "../base/_variables" as *;
+@use "../abstracts/" as *;
 
 .category{
     margin-top: 16px;
@@ -8,4 +9,8 @@
         background-color: $orange;
         color: $white;
     }
+    @include breakpoint(big){
+        padding-left: calc((100% - 1440px) / 2);
+        padding-right: calc((100% - 1440px) / 2);
+  }
 }
